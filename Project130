@@ -1,0 +1,36 @@
+import csv
+import pandas as pd
+
+data = pd.read_csv("Scrapper.csv")
+
+
+
+data = data[data['Star'].notna()]
+data = data[data['Constellation'].notna()]
+data = data[data['Right_Ascension'].notna()]
+data = data[data['Declination'].notna()]
+data = data[data['Apparent_Magnitude'].notna()]
+data = data[data['Distance'].notna()]
+data = data[data['Spectral_Type'].notna()]
+data = data[data['Mass'].notna()]
+data = data[data['Radius'].notna()]
+data = data[data['Discovery_Year'].notna()]
+
+data_set=[]
+
+
+
+with open("Scrapper.csv","r") as f:
+    csv_reader_1 = csv.reader(f)
+    for a in csv_reader_1:
+        data_set.append(a)
+
+headers= data_set[0]
+Star_data = data_set[1:]
+
+
+with open('Data3.csv','w',newline='') as f:
+    csv_writer_1 = csv.writer(f)
+    csv_writer_1.writerow(headers)
+    csv_writer_1.writerows(Star_data)
+
